@@ -1,0 +1,49 @@
+:root{
+    --card-peek-size: 30px;
+}
+
+.hand{
+    /* margin: 10px 10px 10px 50px; */
+    /* border: 1px dashed gray; */
+    --padding-size: 0px;
+    padding: var(--padding-size);
+    padding-right: calc(var(--padding-size) + var(--card-peek-size));
+    display: flex;
+    justify-content: center;
+    /* align-items: stretch; */
+    height: auto;
+}
+
+.cardbox{
+    --padding-size: 10px;
+    padding: var(--padding-size);
+    padding-right: calc(var(--padding-size) + var(--card-peek-size));
+}
+
+.playing-card{
+    border: 1px solid gray;
+    border-radius: 5px;
+    background: url(./deck/JS.png);
+    /* height: 93px; */
+    /* width: 67px; */
+    width: 10vw;
+    max-width: 75px;
+    min-width: 60px;
+    aspect-ratio: 8/11;
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: contain;
+    margin-right: calc(0px - var(--card-peek-size));
+    transition: transform 0.05s;
+    filter: drop-shadow(1px 1px 1px gray);
+    z-index: 1;
+}
+
+.hovered-card{
+    transform: translateY(-5px) scale(1.2);
+    z-index: 2;
+}
+
+.selected-card{
+    border: 4px solid green;
+}
