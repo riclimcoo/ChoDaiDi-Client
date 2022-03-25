@@ -8,18 +8,19 @@ function shrink(card) {
 function handlehover(x, y) {
     const hand = document.getElementById('hand');
     let cards = hand.getElementsByClassName("playing-card");
-    let bound = hand.getBoundingClientRect();
+    // let bound = hand.getBoundingClientRect();
     for (let i = 0; i < cards.length; i++) {
         let card = cards[i];
         let rect = card.getBoundingClientRect();
-        let topBound = window.scrollY + rect.top;
-        let botBound = window.scrollY + rect.bottom;
-        let leftBound = window.scrollX + rect.left;
-        let rightBound = window.scrollX + rect.right;
-        if (i < cards.length - 1) {
+        let topBound = rect.top;
+        let botBound = rect.bottom;
+        let leftBound = rect.left;
+        let rightBound = rect.right;
+        if (i < cards.length - 1 &&
+            cards[i + 1].getBoundingClientRect().right > rightBound) {
             let adjacentcard = cards[i + 1];
             let rect2 = adjacentcard.getBoundingClientRect();
-            rightBound = window.scrollX + rect2.left;
+            rightBound = rect2.left;
         }
         if (y < topBound || y > botBound) {
             shrink(card);
