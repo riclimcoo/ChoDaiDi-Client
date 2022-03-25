@@ -9,13 +9,13 @@ function shrink(card: Element){
 function handlehover(x: number, y: number){
     const hand = document.getElementById('hand') as HTMLDivElement;
     let cards = hand.getElementsByClassName("playing-card");
-    let bound = hand.getBoundingClientRect();
-    let topBound = bound.top;
-    let botBound = bound.bottom;
+    // let bound = hand.getBoundingClientRect();
     
     for (let i = 0; i < cards.length; i++){
         let card = cards[i];
         let rect = card.getBoundingClientRect();
+        let topBound = window.scrollY + rect.top;
+        let botBound = window.scrollY + rect.bottom;
         let leftBound = window.scrollX + rect.left;
         let rightBound = window.scrollX + rect.right;
         if (i < cards.length-1){

@@ -8,7 +8,7 @@ const RESET_BUTTON = document.getElementById('reset-button');
 const SKIP_BUTTON = document.getElementById('skip-button');
 const PLAY_BUTTON = document.getElementById('play-button');
 function getWebSocketServer() {
-    if (window.location.host === "aaugustin.github.io") {
+    if (window.location.host === "riclimcoo.github.io") {
         return "wss://riclimcoo-cdd.herokuapp.com/";
     }
     else if (window.location.host === "localhost:5500") {
