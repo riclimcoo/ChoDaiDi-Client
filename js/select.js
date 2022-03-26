@@ -42,5 +42,3 @@ export function getSelectedCards() {
     }
     return cards;
 }
-renderHand(['JC', 'QS']);
-renderCombo("Pair", ['AC', 'AS']);

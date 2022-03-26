@@ -7,23 +7,36 @@ const START_BUTTON = document.getElementById('start-button');
 const RESET_BUTTON = document.getElementById('reset-button');
 const SKIP_BUTTON = document.getElementById('skip-button');
 const PLAY_BUTTON = document.getElementById('play-button');
-function getWebSocketServer() {
+function getServerURL() {
     if (window.location.host === "riclimcoo.github.io") {
         return "wss://riclimcoo-cdd.herokuapp.com/";
     }
-    else if (window.location.host === "localhost:5500") {
+    else if (window.location.host === "localhost:5500" ||
+        window.location.host === "127.0.0.1:5500") {
         return "ws://localhost:8001/";
     }
     else {
         throw new Error(`Unsupported host: ${window.location.host}`);
     }
 }
-const SOCKET = new WebSocket('wss://riclimcoo-cdd.herokuapp.com/');
+let SOCKET = new WebSocket(getServerURL());
 let MY_NAME;
 SOCKET.onopen = function () {
     SOCKET.send(JSON.stringify({
         type: 'register'
     }));
+};
+SOCKET.onclose = function () {
+    alert('Disconnected from server. Reconnecting...', "danger");
+    setTimeout(() => {
+        SOCKET = new WebSocket(getServerURL());
+    }, 1000);
+};
+SOCKET.onerror = function () {
+    alert('Could not connect to server. Reconnecting...', "danger");
+    setTimeout(() => {
+        SOCKET = new WebSocket(getServerURL());
+    }, 1000);
 };
 JOIN_BUTTON.onclick = () => {
     MY_NAME = NAME_BOX.value;

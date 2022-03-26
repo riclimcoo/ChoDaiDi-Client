@@ -46,6 +46,3 @@ export function getSelectedCards():Array<string>{
     }
     return cards
 }
-
-renderHand(['JC', 'QS']);
-renderCombo("Pair", ['AC','AS']);
